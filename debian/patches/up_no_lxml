@@ -1,0 +1,20 @@
+From: Yaroslav Halchenko <debian@onerussian.com>
+Subject: do not resolve entities 
+
+Adopted from upstream's commit on top of more recent release
+
+Origin: https://bitbucket.org/openpyxl/openpyxl/commits/3b4905f428e1
+Bug-Debian: http://bugs.debian.org/854442
+Applied-Upstream:  2017-01-17
+Last-Update: 2017-02-07
+
+--- a/openpyxl/xml/tests/test_functions.py
++++ b/openpyxl/xml/tests/test_functions.py
+@@ -6,6 +6,7 @@ from io import BytesIO
+ from ..functions import fromstring, iterparse
+ 
+ 
++import xml
+ 
+ @pytest.mark.parametrize("xml, tag",
+                          [

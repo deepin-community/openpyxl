@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+PY3VERS = $(shell py3versions -vr)
+PY3VER = $(shell py3versions -vd)
+
+%:
+	dh $@ --with=python3 --buildsystem=pybuild
+
+override_dh_clean:
+	rm -rf openpyxl.egg-info
+	dh_clean
+
+override_dh_auto_install: ${PY3VERS:%=python-install%}
+python-install%:
+	python$* setup.py install --install-layout=deb --root=$(CURDIR)/debian/tmp
+
+override_dh_auto_test: ${PY3VERS:%=python-test%}
+python-test%:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	LC_ALL=C.UTF-8 python$* /usr/bin/py.test-3 openpyxl
+endif
+
+override_dh_installchangelogs:
+	dh_installchangelogs doc/changes.rst

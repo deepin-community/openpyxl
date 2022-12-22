@@ -1,0 +1,214 @@
+openpyxl (3.0.9-1) unstable; urgency=medium
+
+  * Team upload.
+  * Move to default layout of Debian Science policy and remove debian/gbp.conf
+  * Maintainer is Debian Science Maintainers
+  * New Homepage
+  * Point watch file to new location
+  * Standards-Version: 4.6.0 (routine-update)
+  * debhelper-compat 13 (routine-update)
+  * Testsuite: autopkgtest-pkg-python (routine-update)
+  * Add salsa-ci file (routine-update)
+  * Rules-Requires-Root: no (routine-update)
+  * Use canonical URL in Vcs-Browser.
+
+ -- Andreas Tille <tille@debian.org>  Mon, 15 Nov 2021 10:43:20 +0100
+
+openpyxl (3.0.3-1) unstable; urgency=medium
+
+  * New upstream release; Closes: #948841
+  * debian/control
+    - update upstream copyright years
+  * debian/patches/up_no_lxml
+    - refresh patch
+  * Drop python2 support; Closes: #937210
+
+ -- Sandro Tosi <morph@debian.org>  Sat, 01 Feb 2020 23:24:16 -0500
+
+openpyxl (2.4.9-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release
+    Closes: #790751
+  * Take over maintenance to Debian Science team
+  * cme fix dpkg-control
+  * Standards-Version: 4.1.3
+  * debhelper 9
+  * Drop python-imaging as alternative to python-pil
+    Closes: #866446
+  * Verify that homepage is correct
+    Closes: #790752
+  * Add missing DEP3 headers
+  * Enable usage of python-et-xmlfile which is now available in Debian
+  * Distinct descriptions
+  * Fix watch file
+
+ -- Andreas Tille <tille@debian.org>  Fri, 12 Jan 2018 11:57:28 +0100
+
+openpyxl (2.3.0-3) unstable; urgency=medium
+
+  * Do not resolve entities with lxml to avoid XXE vulnerability
+    - patch up_no_lxml (Closes: #854442)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 07 Feb 2017 09:37:53 -0500
+
+openpyxl (2.3.0-2) unstable; urgency=medium
+
+  * debian/control
+    - move lxml (>= 3.3.4) into Depends and adding python-et-xmlfile as
+      an alternative to it (Closes: #822414)
+ 	- policy boost to 3.9.8
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 26 Apr 2016 21:49:59 -0400
+
+openpyxl (2.3.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version
+  * Build-Depends: python3-all (instead of python3)
+    Closes: #802088
+
+ -- Andreas Tille <tille@debian.org>  Mon, 26 Oct 2015 14:24:40 +0100
+
+openpyxl (2.3.0~b2-1) unstable; urgency=medium
+
+  * Fresh upstream  beta-release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 15 Sep 2015 14:02:57 -0400
+
+openpyxl (2.3.0~b1-1) unstable; urgency=medium
+
+  * Fresh upstream beta-release
+  * debian/copyright -- fixups
+  * debian/watch - allow to update for alpha/beta releases
+  * debian/patches
+    - up_python3_print - fix for compatibility with python3 (Closes: #790754)
+    - deb_no_et_xml_file - there is no et_xmlfile package yet and it
+      is optional anyways. Disable it in setup.py so dh*-python magic doesn't
+      add unsatisfyiable depends
+  * debian/control
+    - to play safe care only about python >= 2.6
+  * debian/rules
+    - adjust path to changes.rst
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 01 Jul 2015 10:34:46 -0400
+
+openpyxl (2.2.4-1) unstable; urgency=medium
+
+  * New upstream release (Thanks Sjoerd Langkemper for the buzz and help
+    with update)
+    - this package should (Closes: #786108, #782925) due to UNRELEASED
+      changes below
+  * debian/rules:
+    - use LC_ALL=C.UTF-8 while testing
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 01 Jul 2015 08:44:58 -0400
+
+openpyxl (2.1.3-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * debian/rules
+    - install upstream changelog
+  * debian/control
+    - added jdcal into dependencies
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 09 Dec 2014 11:36:21 -0500
+
+openpyxl (2.0.5-1) UNRELEASED; urgency=medium
+
+  * Fresh upstream release, which introduces some possibly backward
+    incompatible changes (thanks upstream for the summary):
+    - using optimized reader, make sure you're using workseet.rows and not
+      worksheet.iter_rows()
+    - still using optimized reader, make sure you're using cell.value and
+      not cell.internal_value
+    - the flag data_only when opening a workbook in opitmized mode returns
+      the values of the formulas instead of the actual formulas
+    - when writing in optimized mode, the way to use append() has changed a
+      lot, you might want to check the docs:
+      http://pythonhosted.org/openpyxl/optimized.html#optimized-writer
+  * debian/{control,watch}
+    - adjust for moving under openpyxl organization on bitbucket
+  * debian/{control,rules}
+    - deprecating use of pysupport
+    - providing python3-openpyxl package now
+    - added python*-lxml packages to build-depends for testing and recommends
+  	- used py.test not nose for testing
+    - boosted policy compliance 3.9.5
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 08 Aug 2014 12:22:57 -0400
+
+openpyxl (1.7.0+ds1-1) unstable; urgency=low
+
+  * Fresh upstream release
+    - removed cover/ generated reports
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 26 Nov 2013 11:19:49 -0500
+
+openpyxl (1.6.2-1) experimental; urgency=low
+
+  * Fresh upstream release
+    - provides optional support for embedded images.
+      Adding Recommends to python-imaging
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 15 Apr 2013 10:10:17 -0400
+
+openpyxl (1.6.1+hg2-g4bff8e3-1) experimental; urgency=low
+
+  * Fresh upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 04 Feb 2013 12:08:47 -0500
+
+openpyxl (1.5.8-1) unstable; urgency=low
+
+  * Fresh upstream release
+    - fixes unittests failures in upcoming pandas 0.7.3
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 12 Apr 2012 11:20:11 -0400
+
+openpyxl (1.5.6-1) unstable; urgency=low
+
+  * Fresh upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 18 Nov 2011 15:56:52 -0500
+
+openpyxl (1.5.5-1) unstable; urgency=low
+
+  * Fresh upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 11 Oct 2011 18:02:11 -0400
+
+openpyxl (1.5.4-1) unstable; urgency=low
+
+  * Fresh upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 12 Sep 2011 16:35:25 -0400
+
+openpyxl (1.5.3+hg365-1) unstable; urgency=low
+
+  * Fresh post-release snapshot:
+    addresses LibreOffice compatibility issues
+  * Boosted standards version to 3.9.2 -- no changes
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 21 Jul 2011 14:36:21 -0400
+
+openpyxl (1.5.0-1) unstable; urgency=low
+
+  * New upstream release
+    - sources layout has changed
+    - requires Python >= 2.6 now (Closes: #603793)
+  * Boosted standards version to 3.9.1 -- no changes
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 15 Mar 2011 13:24:29 -0400
+
+openpyxl (1.1.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 01 Aug 2010 23:42:16 -0400
+
+openpyxl (1.0.1+hg95-1) unstable; urgency=low
+
+  * Initial release (Closes: #590536)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 27 Jul 2010 16:40:40 -0400
