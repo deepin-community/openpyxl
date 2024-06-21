@@ -1,15 +1,22 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-PY3VERS = $(shell py3versions -vr)
-PY3VER = $(shell py3versions -vd)
+PY3VERS = $(shell py3versions -vs)
 
 %:
-	dh $@ --with=python3 --buildsystem=pybuild
+	dh $@ --with=python3,sphinxdoc --buildsystem=pybuild
 
 override_dh_clean:
-	rm -rf openpyxl.egg-info
+	rm -rf openpyxl.egg-info openpyxl/formatting/tests/data/conditional-formatting.xlsx openpyxl/reader/tests/data/complex-styles.xlsx
 	dh_clean
+
+override_dh_auto_build:
+	cp -n debian/conditional-formatting.xlsx openpyxl/formatting/tests/data
+	cp -n debian/complex-styles.xlsx openpyxl/reader/tests/data
+	dh_auto_build
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
+	cd doc && LC_ALL=C.UTF-8 sphinx-build -b html -d build/doctrees . build/html
+endif
 
 override_dh_auto_install: ${PY3VERS:%=python-install%}
 python-install%:

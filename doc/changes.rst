@@ -1,3 +1,83 @@
+3.1.2 (2023-03-11)
+==================
+
+* `#1963 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1963>`_ Cannot read worksheets in read-only mode with locally scoped definitions
+* `#1974 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1974>`_ Empty custom properties cause invalid files
+
+
+3.1.1 (2023-02-13)
+==================
+
+
+Bugfixes
+--------
+
+* `#1881 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1881>`_ DocumentProperties times set by module import only
+* `#1947 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1947>`_ Worksheet-specific definitions are missing
+
+
+3.1.0 (2023-01-31)
+==================
+
+
+New Features
+------------
+
+* Added support for data table formulae
+* Mapped chartspace graphical properties to charts for advanced formatting
+
+
+Bugfixes
+--------
+
+* `#1156 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1156>`_ Table filters are always overriden
+* `#1360 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1360>`_ Can't read some ScatterCharts if n
+* `#1724 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1724>`_ Problem with multilevel indices in dataframes
+* `#1772 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1772>`_ Problem with category indices in dataframes
+* `#1786 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1786>`_ NamedStyles share attributes - mutables gotcha
+* `#1851 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1851>`_ Allow print area to be set to None
+* `#1852 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1852>`_ Worksheet for print title and print areas can't be found
+* `#1853 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1853>`_ Custom document properties that are strings can be empty
+* `#1858 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1858>`_ ConditionalFormatting lost when pivot table updated
+* `#1864 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1864>`_ Better handling of defined names
+* `#1904 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1904>`_ dataframe_to_rows() misalignment on multiindex
+* `#1908 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1908>`_ Ditto
+* `#1912 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1912>`_ Excel doesn't like xmlns:space on nodes with only whitespace, which it treats as empty.
+* `#1942 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1942>`_ Exception when print areas use table references.
+
+
+Pull Requests
+-------------
+
+* `PR409 <https://foss.heptapod.net/openpyxl/openpyxl/-/merge_requests/409/>`_ Support for Rich Text in cells
+* `PR411 <https://foss.heptapod.net/openpyxl/openpyxl/-/merge_requests/411/>`_ Provide more information when workbook cannot be loaded
+* `PR407 <https://foss.heptapod.net/openpyxl/openpyxl/-/merge_requests/407/>`_ Support for Custom Document Properties
+
+
+Deprecations
+------------
+
+The following properties have been removed from worksheets: formula_attributes, page_breaks, show_summary_below, show_summary_right, page_size orientation. Client code should use the relevant objects.
+
+
+Removals
+--------
+
+The following deprecated methods have been removed from workbooks: get_named_range, add_named_range, remove_named_range. And the get_emu_dimesions from images.
+
+
+3.0.10 (2022-05-19)
+===================
+
+
+Bugfixes
+--------
+
+* `#1684 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1684>`_ Image files not closed when workbooks are saved
+* `#1778 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1778>`_ Problem with missing scope attribute in Pivot Table formats
+* `#1821 <https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1821>`_ Excel unhappy when multiple sorts are defined
+
+
 3.0.9 (2021-09-22)
 ==================
 

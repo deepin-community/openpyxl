@@ -1,0 +1,16 @@
+Test-Command: python3 -c "import openpyxl"
+Depends: python3-openpyxl
+Restrictions: allow-stderr
+
+Tests: upstreamtests
+Depends: python3-openpyxl,
+         python3-all,
+         python3-defusedxml,
+         python3-et-xmlfile,
+         python3-lxml,
+         python3-numpy,
+         python3-pandas,
+         python3-pil,
+         python3-pytest,
+         python3-setuptools,
+Restrictions: allow-stderr

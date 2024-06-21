@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+# TODO this probably tests the source tree not the as-installed package
+
+# have test data available
+cp -r openpyxl ${AUTOPKGTEST_TMP}
+cp conftest.py ${AUTOPKGTEST_TMP}
+cp -n debian/conditional-formatting.xlsx ${AUTOPKGTEST_TMP}/openpyxl/formatting/tests/data
+cp -n debian/complex-styles.xlsx ${AUTOPKGTEST_TMP}/openpyxl/reader/tests/data
+cd ${AUTOPKGTEST_TMP}
+
+for PY3VER in `py3versions -vs` ; do
+LC_ALL=C.UTF-8 python${PY3VER} /usr/bin/py.test-3 .
+done

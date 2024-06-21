@@ -1,0 +1,18 @@
+Description: Don't expect to find a thumbnail that has been removed
+
+(for copyright reasons)
+
+Author: Rebecca N. Palmer <rebecca_palmer@zoho.com>
+Bug-Debian: https://bugs.debian.org/1053672
+Forwarded: no
+
+--- a/openpyxl/reader/tests/test_excel.py
++++ b/openpyxl/reader/tests/test_excel.py
+@@ -168,7 +168,6 @@ class TestExcelReader:
+             'xl/theme/theme1.xml',
+             'xl/styles.xml',
+             'xl/worksheets/sheet1.xml',
+-            'docProps/thumbnail.jpeg',
+             'docProps/core.xml',
+             'docProps/app.xml'
+         ]

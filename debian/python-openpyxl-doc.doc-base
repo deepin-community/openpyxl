@@ -1,0 +1,7 @@
+Document: python3-openpyxl
+Title: openpyxl - A Python library to read/write Excel 2010 xlsx/xlsm files
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-openpyxl-doc/html/index.html
+Files: /usr/share/doc/python-openpyxl-doc/html/*

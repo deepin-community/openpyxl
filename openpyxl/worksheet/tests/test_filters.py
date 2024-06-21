@@ -1,4 +1,4 @@
-# Copyright (c) 2010-2021 openpyxl
+# Copyright (c) 2010-2023 openpyxl
 
 import pytest
 
@@ -18,7 +18,7 @@ class TestFilterColumn:
         filters = Filters(blank=True, filter=["0"])
         col = FilterColumn(colId=5, filters=filters)
         expected = """
-        <filterColumn colId="5">
+        <filterColumn colId="5" hiddenButton="0" showButton="1">
           <filters blank="1">
             <filter val="0"></filter>
           </filters>
@@ -102,7 +102,7 @@ class TestAutoFilter:
         af.add_filter_column(5, ["0"], blank=True)
         expected = """
         <autoFilter ref="A1:F1">
-            <filterColumn colId="5">
+            <filterColumn colId="5" hiddenButton="0" showButton="1">
               <filters blank="1">
                 <filter val="0"></filter>
               </filters>
@@ -115,12 +115,12 @@ class TestAutoFilter:
 
 
     def test_add_sort_condition(self, AutoFilter):
-        af = AutoFilter('A2:A3')
-        af.add_sort_condition('A2:A3', descending=True)
+        af = AutoFilter('A2:B3')
+        af.add_sort_condition('B2:B3', descending=True)
         expected = """
-        <autoFilter ref="A2:A3">
-            <sortState ref="A2:A3">
-              <sortCondition descending="1" ref="A2:A3" />
+        <autoFilter ref="A2:B3">
+            <sortState ref="A2:B3">
+              <sortCondition descending="1" ref="B2:B3" />
             </sortState>
         </autoFilter>
         """
@@ -259,7 +259,7 @@ def CustomFilter():
 class TestCustomFilter:
 
     def test_ctor(self, CustomFilter):
-        fut = CustomFilter(operator="greaterThanOrEqual", val="0.2")
+        fut = CustomFilter(operator="greaterThanOrEqual", val=0.2)
         xml = tostring(fut.to_tree())
         expected = """
         <customFilter operator="greaterThanOrEqual" val="0.2" />
@@ -274,7 +274,16 @@ class TestCustomFilter:
         """
         node = fromstring(src)
         fut = CustomFilter.from_tree(node)
-        assert fut == CustomFilter(operator="greaterThanOrEqual", val="0.2")
+        assert fut == CustomFilter(operator="greaterThanOrEqual", val=0.2)
+
+
+    def test_string_filter(self, CustomFilter):
+        src = """
+        <customFilter val="K*" operator="equal" />
+        """
+        node = fromstring(src)
+        fut = CustomFilter.from_tree(node)
+        assert fut == CustomFilter(val="K*", operator="equal")
 
 
 @pytest.fixture

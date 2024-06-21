@@ -2,23 +2,18 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: openpyxl
 Upstream-Contact: https://groups.google.com/forum/#!forum/openpyxl-users
 Source: https://foss.heptapod.net/openpyxl/openpyxl
+Files-Excluded: openpyxl/formatting/tests/data/conditional-formatting.xlsx
+                openpyxl/reader/tests/data/complex-styles.xlsx
+Comment: have thumbnails with Apple ICC profiles - replaced with the copies without these in debian/
 
 Files: *
-Copyright: 2010-2019, openpyxl
+Copyright: 2010-2023, openpyxl
 License: MIT
-
-Files: openpyxl/compat/odict.py
-Copyright: 2001-2011, Python Software Foundation
-           2011 Raymond Hettinger
-License: Python
- See /usr/share/doc/python-minimal/copyright for the full list of terms
- Note: backport changes by Raymond were originally distributed under MIT
-      license, but since the original license for Python is more
-      restrictive than MIT, code cannot be released under its terms and
-      still adheres to the limitations of Python license.
+Comment: AUTHORS.rst in the -doc package has a list of contributors (of unknown completeness)
 
 Files: debian/*
-Copyright: 2010-2015, NeuroDebian Team <team@neuro.debian.net>
+Copyright: 2010-2016, NeuroDebian Team <team@neuro.debian.net>
+           2018-2023, Debian Science Team
 License: MIT
 
 License: MIT

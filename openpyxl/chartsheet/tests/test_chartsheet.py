@@ -1,4 +1,4 @@
-# Copyright (c) 2010-2021 openpyxl
+# Copyright (c) 2010-2023 openpyxl
 
 from openpyxl.worksheet.drawing import Drawing
 from openpyxl.worksheet.page import PageMargins
@@ -77,7 +77,7 @@ class TestChartsheet:
         <chartsheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
            xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
            <sheetViews>
-             <sheetView workbookViewId="0"></sheetView>
+             <sheetView workbookViewId="0" zoomToFit="1"></sheetView>
             </sheetViews>
            <drawing r:id="rId1" />
         </chartsheet>
