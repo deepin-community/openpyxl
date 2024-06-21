@@ -1,0 +1,17 @@
+Description: Fix testsuite-failing warning with pytest 8
+
+Author: Rebecca N. Palmer <rebecca_palmer@zoho.com>
+Bug-Debian: https://bugs.debian.org/1063978
+Forwarded: no
+
+--- a/openpyxl/drawing/tests/test_drawing.py
++++ b/openpyxl/drawing/tests/test_drawing.py
+@@ -9,7 +9,7 @@ from openpyxl.tests.helper import compar
+ 
+ class TestDrawing(object):
+ 
+-    def setup(self):
++    def setup_method(self):
+         from ..drawing import Drawing
+         self.drawing = Drawing()
+ 

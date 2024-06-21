@@ -1,0 +1,51 @@
+Description: Make ordering and date in documentation reproducible
+
+Author: Rebecca N. Palmer <rebecca_palmer@zoho.com>, Chris Lamb
+Forwarded: no
+
+--- a/openpyxl/descriptors/base.py
++++ b/openpyxl/descriptors/base.py
+@@ -118,20 +118,23 @@ class MinMax(Min, Max):
+ 
+ 
+ class Set(Descriptor):
+-    """Value can only be from a set of know values"""
++    """Value can only be from a set of known values"""
+ 
+     def __init__(self, name=None, **kw):
+         if not 'values' in kw:
+             raise TypeError("missing set of values")
+         kw['values'] = set(kw['values'])
+         super(Set, self).__init__(name, **kw)
+-        self.__doc__ = "Value must be one of {0}".format(self.values)
++        self.__doc__ = "Value must be one of {0}".format(sorted(self.values, key=str))
+ 
+     def __set__(self, instance, value):
+         if value not in self.values:
+             raise ValueError(self.__doc__)
+         super(Set, self).__set__(instance, value)
+ 
++    def __repr__(self): # has <> because it may not reproduce the object, as name or subclass kwargs may be in use
++        return "<{0}(values={1})>".format(type(self), sorted(self.values, key=str))
++
+ 
+ class NoneSet(Set):
+ 
+--- a/doc/conf.py
++++ b/doc/conf.py
+@@ -68,9 +68,13 @@ master_doc = 'index'
+ 
+ # General information about the project.
+ project = u'openpyxl'
+-from datetime import date
++import datetime
++import time
++import os
++source_date = datetime.datetime.utcfromtimestamp(int(os.environ.get('SOURCE_DATE_EPOCH',time.time())))
+ 
+-copyright = u'2010 - {0}, {1}'.format(date.today().year, openpyxl.__author__)
++
++copyright = u'2010 - {0}, {1}'.format(source_date.year, openpyxl.__author__)
+ 
+ # The version info for the project you're documenting, acts as replacement for
+ # |version| and |release|, also used in various other places throughout the

@@ -1,1 +1,5 @@
-up_no_lxml
+remove_thumbnail.patch
+python3p12_compat.patch
+privacy.patch
+reproducibility.patch
+pytest8_compat.patch

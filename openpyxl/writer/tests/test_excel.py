@@ -1,14 +1,14 @@
-from __future__ import absolute_import
-# Copyright (c) 2010-2021 openpyxl
+
+# Copyright (c) 2010-2023 openpyxl
 
 from io import BytesIO
 import os
 from string import ascii_letters
+import datetime
 from zipfile import ZipFile
 
 import pytest
 
-from openpyxl import load_workbook
 from openpyxl.chart import BarChart
 from openpyxl.comments import Comment
 from openpyxl.drawing.spreadsheet_drawing import SpreadsheetDrawing
@@ -183,9 +183,14 @@ def test_write_empty_workbook(tmpdir):
     assert os.path.isfile(dest_filename)
 
 
-def test_write_virtual_workbook():
-    old_wb = Workbook()
-    from ..excel import save_virtual_workbook
-    saved_wb = save_virtual_workbook(old_wb)
-    new_wb = load_workbook(BytesIO(saved_wb))
-    assert new_wb
+def test_modified(tmpdir):
+    from ..excel import save_workbook
+    tmpdir.chdir()
+
+    wb = Workbook()
+    modified = datetime.datetime(2011, 5, 19, 10, 23, 15)
+    wb.properties.modified = modified
+
+    dest_filename = 'empty_book.xlsx'
+    save_workbook(wb, dest_filename)
+    assert wb.properties.modified > modified
